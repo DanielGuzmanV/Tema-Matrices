@@ -1,0 +1,9 @@
+bin
+obj
+Properties
+App.config
+Form1.Designer.cs
+Form1.resx
+Program.cs
+temaMatrices.csproj
+temaMatrices.sln
