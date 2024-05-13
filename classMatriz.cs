@@ -142,5 +142,100 @@ namespace temaMatrices
             mtzRes.fila = this.fila;
             mtzRes.colum = this.colum;
         }
+
+        // Multiplicacion de matrices
+        public void multiplicarMatriz(classMatriz mtz2, ref classMatriz mtzRespu)
+        {
+            for(int fil = 1; fil <= this.fila; fil++)
+            {
+                for(int col = 1; col <= mtz2.colum; col++)
+                {
+                    mtzRespu.matriz[fil, col] = 0;
+                    for(int diCol = 1; diCol <= this.colum; diCol++)
+                    {
+                        mtzRespu.matriz[fil, col] = mtzRespu.matriz[fil, col] + matriz[fil, diCol] * mtz2.matriz[diCol, col];
+                    }
+                }
+            }
+            mtzRespu.fila = this.fila;
+            mtzRespu.colum = mtz2.colum;
+        }
+
+        // Funcion auxiliar para la multiplicacion de matrices
+        public void ReturnDimension(ref int numFila, ref int numCol)
+        {
+            numFila = this.fila;
+            numCol = this.colum;
+        }
+
+        // Busqueda de un elemento de una matriz
+        public bool busquedaElem(int number)
+        {
+            int col, fil;
+            bool answer = false;
+            col = 1;
+
+            while((col <= this.colum) && (answer == false))
+            {
+                fil = this.fila;
+                while((fil >= 1) && (answer == false))
+                {
+                    if(matriz[fil, col] == number)
+                    {
+                        answer = true;
+                    }
+                    fil--;
+                }
+                col++;
+            }
+            return answer;
+        }
+
+        // Busqueda de una matriz por las posiciones que tiene la matriz
+        // osea donde esta la fila y la columna
+        public void busquedaElem2(int number, ref int numFila, ref int numColum)
+        {
+            int col, fil;
+            bool answer = false;
+            col = 1; numFila = 0; numColum = 0;
+
+            while((col <= this.colum) && (answer == false))
+            {
+                fil = this.fila;
+                while((fil >= 1) && (answer == false))
+                {
+                    if(matriz[fil, col] == number)
+                    {
+                        answer = true;
+                        numFila = fil;
+                        numColum = col;
+                    }
+                    fil--;
+                }
+                col++;
+            }
+        }
+
+        // Verificar una matriz de los aprobados
+        public bool verifAprobado()
+        {
+            int col, fil;
+            bool answer = true;
+            col = 1;
+            while((col <= this.colum) && (answer == true))
+            {
+                fil = this.fila;
+                while((fil >= 1) && (answer == true))
+                {
+                    if(!(matriz[fil, col] > 50))
+                    {
+                        answer = false;
+                    }
+                    fil--;
+                }
+                col++;
+            }
+            return answer;
+        }
     }
 }

@@ -91,6 +91,45 @@ namespace temaMatrices
 
         }
 
+        private void multimatricesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int fil1, col1, fil2, col2;
+            fil1 = 0; col1 = 0; fil2 = 0; col2 = 0;
+
+            objM1.ReturnDimension(ref fil1, ref col1);
+            objM2.ReturnDimension(ref fil2, ref col2);
+
+            if (col1 == fil2)
+            {
+                objM1.multiplicarMatriz(objM2, ref objM3);
+                textBox8.Text = objM3.getDate();
+            }
+            else
+            {
+                textBox8.Text = "Revise las dimensiones de la matriz";
+            }
+
+        }
+
+        private void busquedaDeElemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = string.Concat(objM1.busquedaElem(int.Parse(textBox1.Text)));
+        }
+
+        private void busqEleXFilYColToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int fila, colum;
+            fila = 0; colum = 0;
+            objM1.busquedaElem2(int.Parse(textBox1.Text), ref fila, ref colum);
+            textBox6.Text = string.Concat("la fila es: " + fila + " la columa es: " + colum);
+
+        }
+
+        private void verfiAprobadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = string.Concat(objM1.verifAprobado());
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             objM1 = new classMatriz();
