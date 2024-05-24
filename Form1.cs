@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace temaMatrices
 {
@@ -87,7 +88,21 @@ namespace temaMatrices
 
         private void sumaDeMatricesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            objM1.sumaMatriz(objM2, ref objM3);
+            int fil1, col1, fil2, col2;
+            fil1 = 0; col1 = 0; fil2 = 0; col2 = 0;
+            objM1.ReturnDimension(ref fil1, ref col1);
+            objM2.ReturnDimension(ref fil2, ref col2);
+            
+            if((fil1 == fil2) && (col1 == col2))
+            {
+                objM1.sumaMatriz(objM2, ref objM3);
+                textBox8.Text = objM3.getDate();
+            }
+            else
+            {
+                Interaction.MsgBox("Dimensiones no iguales");
+            }
+           
 
         }
 
@@ -128,6 +143,59 @@ namespace temaMatrices
         private void verfiAprobadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBox6.Text = string.Concat(objM1.verifAprobado());
+        }
+
+        private void restaDeMatricesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int fil1, col1, fil2, col2;
+            fil1 = 0; col1 = 0; fil2 = 0; col2 = 0;
+            objM1.ReturnDimension(ref fil1, ref col1);
+            objM2.ReturnDimension(ref fil2, ref col2);
+
+            if((fil1 == fil2) && (col1 == col2))
+            {
+                objM1.restaMatrices(objM2, ref objM3);
+                textBox8.Text = objM3.getDate();
+            }
+            else
+            {
+                Interaction.MsgBox("Revise la dimension:");
+            }
+        }
+
+        private void verifIgualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            textBox6.Text = string.Concat(objM1.verifIguales());
+        }
+
+        private void verifOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = string.Concat(objM1.verifOrden());
+        }
+
+        private void cuantosPrimosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            textBox6.Text = string.Concat(objM1.numElemPrimos());
+        }
+
+        private void contarPrimosPorFilasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.numParPorFilas();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenMatrizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenPorColum(int.Parse(textBox1.Text));
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenColumsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenColums();
+            textBox7.Text = objM1.getDate();
         }
 
         private void Form1_Load(object sender, EventArgs e)

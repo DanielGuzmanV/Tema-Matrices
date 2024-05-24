@@ -134,7 +134,7 @@ namespace temaMatrices
         {
             for(int col = 1; col <= this.colum; col++)
             {
-                for(int fil = this.fila; fil >= 1; fil--)
+                for(int fil = 1; fil <= this.fila; fil++)
                 {
                     mtzRes.matriz[fil, col] = matriz[fil, col] + mtz2.matriz[fil, col];
                 }
@@ -143,6 +143,19 @@ namespace temaMatrices
             mtzRes.colum = this.colum;
         }
 
+        // Resta de matrices
+        public void restaMatrices(classMatriz mtz2, ref classMatriz mtzRes)
+        {
+            for(int fil = 1; fil <= this.fila; fil++)
+            {
+                for(int col = 1; col <= this.colum; col++)
+                {
+                    mtzRes.matriz[fil, col] = matriz[fil, col] - mtz2.matriz[fil, col];
+                }
+            }
+            mtzRes.fila = this.fila;
+            mtzRes.colum = this.colum;
+        }
         // Multiplicacion de matrices
         public void multiplicarMatriz(classMatriz mtz2, ref classMatriz mtzRespu)
         {
@@ -171,9 +184,8 @@ namespace temaMatrices
         // Busqueda de un elemento de una matriz
         public bool busquedaElem(int number)
         {
-            int col, fil;
+            int col = 1, fil;
             bool answer = false;
-            col = 1;
 
             while((col <= this.colum) && (answer == false))
             {
@@ -236,6 +248,131 @@ namespace temaMatrices
                 col++;
             }
             return answer;
+        }
+
+        // Verificar si los elementos de la matriz son iguales
+        public bool verifIguales()
+        {
+            int col, fil, refEle;
+            bool answer = true;
+            col = 1; refEle = matriz[this.fila, 1];
+
+            while((col <= this.colum) && (answer == true))
+            {
+                fil = this.fila;
+                while((fil >= 1) && (answer == true))
+                {
+                    if(!(matriz[fil, col] == refEle))
+                    {
+                        answer = false;
+                    }
+                    fil--;
+                }
+                col++;
+            }
+            return answer;
+        }
+
+        // verificar si la matriz esta ordenada
+        public bool verifOrden()
+        {
+            int col, fil, eleAnte; bool answer = true;
+            col = 1; eleAnte = matriz[this.fila, 1];
+
+            while((col <= this.colum) && (answer == true))
+            {
+                fil = this.fila;
+                while((fil >= 1) && (answer == true))
+                {
+                    if(matriz[fil, col] <= eleAnte)
+                    {
+                        eleAnte = matriz[fil, col];
+                    }
+                    else
+                    {
+                        answer = false;
+                    }
+                    fil--;
+                }
+                col++;
+            }
+            return answer;
+        }
+        // Verificar cuantos numeros primos hay en una matriz
+        public int numElemPrimos()
+        {
+            int numPrim = 0;
+            numerosEnteros num1 = new numerosEnteros();
+            for(int col = 1; col <= this.colum; col++)
+            {
+                for(int fil = 1; fil <= this.fila; fil++)
+                {
+                    num1.cargarDatos(matriz[fil, col]);
+                    if (num1.verifPrimo() == true)
+                    {
+                        numPrim++;
+                    }
+                }   
+            }
+            return numPrim;
+        }
+
+        // verificar cuantos primos hay en las filas de una matriz
+        // Funcion auxiliar para operacion "numParPorFilas()"
+        public int auxNumParFilas(int numFil)
+        {
+            int numPar = 0;
+            numerosEnteros number = new numerosEnteros();
+            for(int col = 1; col <= this.colum; col++)
+            {
+                number.cargarDatos(matriz[numFil, col]);
+                if(number.verifPrimo() == true)
+                {
+                    numPar++;
+                }
+            }
+            return numPar;
+        }
+        // Funcion 
+        public void numParPorFilas()
+        {
+            for(int fil = 1; fil <= this.colum; fil++)
+            {
+                matriz[fil, this.colum + 1] = this.auxNumParFilas(fil);
+            }
+            this.colum++;
+        }
+
+        // Funcion auxiliar para de intercambio
+        public void interCambio(int fil1, int col1, int fil2, int col2)
+        {
+            int auxi = matriz[fil1, col1];
+            matriz[fil1, col1] = matriz[fil2, col2];
+            matriz[fil2, col2] = auxi;
+        }
+
+        // Ordenamiento por columnas de una matriz por parametros
+        public void ordenPorColum(int numCol)
+        {
+            for(int posici = 1; posici < this.fila; posici++)
+            {
+                for(int despla = this.fila; despla >= posici + 1; despla--)
+                {
+                    if(matriz[despla, numCol] > matriz[despla - 1, numCol])
+                    {
+                        this.interCambio(despla, numCol, despla - 1, numCol);
+                    }
+                }
+            }
+        }
+
+        // Ordenamiento por columnas sin parametros usando las anteriores funciones
+        public void ordenColums()
+        {
+            for(int col = 1; col <= this.colum; col++)
+            {
+                this.ordenPorColum(col);
+            }
         }
     }
 }
