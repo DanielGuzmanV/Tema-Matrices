@@ -198,6 +198,113 @@ namespace temaMatrices
             textBox7.Text = objM1.getDate();
         }
 
+        private void ordenaminetoDeMatrizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenTri1();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void funDescoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.desconocido();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenamientoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenEsquema1();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void segmentarParImparToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.segmentParImpar();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenSegementarParImparToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.segmentarParImparOrden();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void intercalarParImparToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.intercalarParImpar();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenTriangularToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.triangularInferiorFil(int.Parse(textBox1.Text), int.Parse(textBox2.Text), int.Parse(textBox3.Text), int.Parse(textBox4.Text));
+            textBox5.Text = objM1.getDate();
+        }
+
+        private void ordenTriangularColToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.triangularInferiorCol(int.Parse(textBox1.Text), int.Parse(textBox2.Text), int.Parse(textBox3.Text), int.Parse(textBox4.Text));
+            textBox5.Text = objM1.getDate();
+        }
+
+        private void ordenDiagonalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenDiagonalPrincipal(int.Parse(textBox1.Text), int.Parse(textBox2.Text), int.Parse(textBox3.Text), int.Parse(textBox4.Text));
+            textBox5.Text = objM1.getDate();
+        }
+
+        private void ordenDiagonalSecuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenDiagonalSecund(int.Parse(textBox1.Text), int.Parse(textBox2.Text), int.Parse(textBox3.Text), int.Parse(textBox4.Text));
+            textBox5.Text = objM1.getDate();
+        }
+
+        private void interTranspuestaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.interElemTranspuesta();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenTriangFila2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenFilTrng();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void ordenTriangFila21ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.ordenFilTrng2();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void frecuElemTriangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = string.Concat(objM1.frecuTriang(int.Parse(textBox1.Text)));
+        }
+
+        private void segmenFrecuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.segmentFrecu();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void segmenTrianguFrecuMinMaxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.segmenTriangFrecu();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void segmentTrianFrecuOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.segmetFrecuTriangOrd3();
+            textBox7.Text = objM1.getDate();
+        }
+
+        private void interFrecuTriangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objM1.intercalarRepNoRepTriang();
+            textBox7.Text = objM1.getDate();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             objM1 = new classMatriz();
